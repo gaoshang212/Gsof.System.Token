@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>$author$</authors>
+    <owners>$author$</owners>
+    <licenseUrl>http://opensource.org/licenses/MIT</licenseUrl>
+    <projectUrl>http://opensource.org/licenses/MIT</projectUrl>
+    <iconUrl>http://opensource.org/licenses/MIT</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>a library for get system uuid token.</description>
+    <copyright>Copyright 2017</copyright>
+    <tags>gsof system token deviceid</tags>
+  </metadata>
+  <files>
+	<file src="..\Gsof.System.Token.Net45\bin\$configuration$\$id$.dll" target="lib\net45\" />
+	<file src=".\bin\$configuration$\dmidecode.exe" target="build\" />
+	<file src="$id$.targets" target="build\" />
+  </files>
+</package>

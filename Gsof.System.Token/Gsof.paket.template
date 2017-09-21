@@ -1,0 +1,9 @@
+type project
+licenseUrl http://opensource.org/licenses/MIT
+
+files
+	./bin/Release/Gsof.System.Token.dll ==> lib/net40
+	../Gsof.System.Token.Net45/bin/Release/Gsof.System.Token.dll ==> lib/net45
+
+dependencies
+	Gsof >= 0.2.0
