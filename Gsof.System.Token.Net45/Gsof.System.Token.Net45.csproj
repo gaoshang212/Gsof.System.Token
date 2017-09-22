@@ -33,8 +33,8 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Gsof, Version=0.2.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Gsof.0.2.0.0\lib\net45\Gsof.dll</HintPath>
+    <Reference Include="Gsof, Version=0.2.1.0, Culture=neutral, PublicKeyToken=03259f55685e777e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Gsof.0.2.1.0\lib\net45\Gsof.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -55,6 +55,11 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="..\Gsof.System.Token\dmidecode.exe">
+      <Link>dmidecode.exe</Link>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
@@ -65,7 +70,6 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-  <Import Project="..\.paket\paket.targets" />
   <Choose>
     <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.0'">
       <ItemGroup>

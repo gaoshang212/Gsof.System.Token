@@ -7,7 +7,7 @@
     <authors>$author$</authors>
     <owners>$author$</owners>
     <licenseUrl>http://opensource.org/licenses/MIT</licenseUrl>
-    <projectUrl>http://opensource.org/licenses/MIT</projectUrl>
+    <projectUrl>https://github.com/gaoshang212/Gsof.System.Token.git</projectUrl>
     <iconUrl>http://opensource.org/licenses/MIT</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>a library for get system uuid token.</description>
@@ -15,7 +15,7 @@
     <tags>gsof system token deviceid</tags>
   </metadata>
   <files>
-	<file src="..\Gsof.System.Token.Net45\bin\$configuration$\$id$.dll" target="lib\net45\" />
+	<file src="..\$id$.Net45\bin\$configuration$\$id$.dll" target="lib\net45\" />
 	<file src=".\bin\$configuration$\dmidecode.exe" target="build\" />
 	<file src="$id$.targets" target="build\" />
   </files>
