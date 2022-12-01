@@ -3,11 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33110.190
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gsof.System.Token", "Gsof.System.Token\Gsof.System.Token.csproj", "{5AEBA06C-E859-4ED0-A7EB-A7F0530283B4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gsof.System.Token", "Gsof.System.Token\Gsof.System.Token.csproj", "{5AEBA06C-E859-4ED0-A7EB-A7F0530283B4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gsof.System.Token.Test", "Gsof.System.Token.Test\Gsof.System.Token.Test.csproj", "{C0335224-A7B0-4406-BF63-DC5D7BBB4C28}"
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Gsof.System.Token.SMBios.Test", "Gsof.System.Token.SMBios.Test\Gsof.System.Token.SMBios.Test.vcxproj", "{31A63CE4-D437-41CB-8581-6A26F8EA1BF1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gsof.System.Token.Test", "Gsof.System.Token.Test\Gsof.System.Token.Test.csproj", "{C0335224-A7B0-4406-BF63-DC5D7BBB4C28}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -43,18 +41,6 @@ Global
 		{C0335224-A7B0-4406-BF63-DC5D7BBB4C28}.Release|x64.Build.0 = Release|Any CPU
 		{C0335224-A7B0-4406-BF63-DC5D7BBB4C28}.Release|x86.ActiveCfg = Release|Any CPU
 		{C0335224-A7B0-4406-BF63-DC5D7BBB4C28}.Release|x86.Build.0 = Release|Any CPU
-		{31A63CE4-D437-41CB-8581-6A26F8EA1BF1}.Debug|Any CPU.ActiveCfg = Debug|x64
-		{31A63CE4-D437-41CB-8581-6A26F8EA1BF1}.Debug|Any CPU.Build.0 = Debug|x64
-		{31A63CE4-D437-41CB-8581-6A26F8EA1BF1}.Debug|x64.ActiveCfg = Debug|x64
-		{31A63CE4-D437-41CB-8581-6A26F8EA1BF1}.Debug|x64.Build.0 = Debug|x64
-		{31A63CE4-D437-41CB-8581-6A26F8EA1BF1}.Debug|x86.ActiveCfg = Debug|Win32
-		{31A63CE4-D437-41CB-8581-6A26F8EA1BF1}.Debug|x86.Build.0 = Debug|Win32
-		{31A63CE4-D437-41CB-8581-6A26F8EA1BF1}.Release|Any CPU.ActiveCfg = Release|x64
-		{31A63CE4-D437-41CB-8581-6A26F8EA1BF1}.Release|Any CPU.Build.0 = Release|x64
-		{31A63CE4-D437-41CB-8581-6A26F8EA1BF1}.Release|x64.ActiveCfg = Release|x64
-		{31A63CE4-D437-41CB-8581-6A26F8EA1BF1}.Release|x64.Build.0 = Release|x64
-		{31A63CE4-D437-41CB-8581-6A26F8EA1BF1}.Release|x86.ActiveCfg = Release|Win32
-		{31A63CE4-D437-41CB-8581-6A26F8EA1BF1}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
