@@ -16,7 +16,13 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<None Include="README.md" Pack="true" PackagePath="\" />
+	  <None Include="..\README.md">
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
+	  </None>
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="Gsof" Version="0.3.1" />
 		<PackageReference Include="Gsof.Native" Version="0.2.4" />
 	</ItemGroup>
