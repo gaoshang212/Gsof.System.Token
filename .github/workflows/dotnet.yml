@@ -22,10 +22,10 @@ jobs:
         dotnet-version: 6.0.x
     - name: Restore dependencies
       run: dotnet restore
+    - name: Test
+      run: dotnet test --verbosity normal
     - name: Build
       run: dotnet build --no-restore -c "Release"
-    - name: Test
-      run: dotnet test --no-build --verbosity normal
     - name: Publish the package to nuget.org
       run: dotnet nuget push */bin/Release/*.nupkg -k $env:NUGET_AUTH_TOKEN --source https://api.nuget.org/v3/index.json --skip-duplicate
       env:
