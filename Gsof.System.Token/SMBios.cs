@@ -2,6 +2,7 @@
 using System;
 using System.IO;
 using System.Linq;
+using System.Runtime.ConstrainedExecution;
 using System.Runtime.InteropServices;
 using System.Text;
 
@@ -76,7 +77,7 @@ namespace Gsof.System.Token
             }
         }
 
-        public static string? UUID()
+        public static string UUID()
         {
             var smb = SMBios.GetSystemFirmwareTable(Provider.RSMB, 0);
 
@@ -110,7 +111,7 @@ namespace Gsof.System.Token
                     var uuid = DmiSystemUuid(buffer, ver);
                     if (!string.IsNullOrEmpty(uuid))
                     {
-                        return uuid;
+                        return uuid!;
                     }
                     break;
                 }
@@ -136,8 +137,8 @@ namespace Gsof.System.Token
 
             for (int i = 0; i < 16 && (only0x00 || only0xFF); i++)
             {
-                if (p[i] != 0x00) only0x00 = true;
-                if (p[i] != 0xFF) only0xFF = true;
+                if (p[i] != 0x00) only0x00 = false;
+                if (p[i] != 0xFF) only0xFF = false;
             }
 
             if (only0xFF)
@@ -150,15 +151,25 @@ namespace Gsof.System.Token
                 return null;
             }
 
+            var uuid = p.ToArray();
 
             if (ver >= 0x0206)
             {
-                return $"{p[3]}{p[2]}{p[1]}{p[0]}-{p[5]}{p[4]}-{p[7]}{p[6]}-{p[8]}{p[9]}-{p[10]}{p[11]}{p[12]}{p[13]}{p[14]}{p[15]}";
+                uuid[0] = p[3];
+                uuid[1] = p[2];
+                uuid[2] = p[1];
+                uuid[3] = p[0];
+                uuid[4] = p[5];
+                uuid[5] = p[4];
+                uuid[6] = p[7];
+                uuid[7] = p[6];
+                for (int i = 8; i < 16; i++)
+                {
+                    uuid[i] = p[i];
+                }
             }
-            else
-            {
-                return $"{p[0]}{p[1]}{p[2]}{p[3]}-{p[4]}{p[5]}-{p[6]}{p[7]}-{p[8]}{p[9]}-{p[10]}{p[11]}{p[12]}{p[13]}{p[14]}{p[15]}";
-            }
+
+            return uuid.ToHex().Insert(8, "-").Insert(13, "-").Insert(18, "-").Insert(23, "-").ToUpper();
         }
     }
 }

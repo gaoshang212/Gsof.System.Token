@@ -10,7 +10,7 @@ namespace Gsof.System.Token.Test
         {
             var result = await ProcessEx.Exec(@"dmidecode.exe", "-s system-uuid", 1000);
 
-            var token = await Token.GetSystemToken();
+            var token = await Token.GetSystemToken(false);
             Assert.AreEqual(token, result.Trim());
         }
 

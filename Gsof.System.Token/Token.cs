@@ -31,7 +31,7 @@ namespace Gsof.System.Token
             return File.ReadAllText(filename);
         }
 
-        public static Task<string> GetSystemToken()
+        public static Task<string> GetSystemToken(bool useCache = true)
         {
             var token = Environment.GetEnvironmentVariable("SYSTEMTOKEN");
             if (!string.IsNullOrEmpty(token))
@@ -45,7 +45,10 @@ namespace Gsof.System.Token
             {
                 try
                 {
-                    token = GetToken();
+                    if (useCache)
+                    {
+                        token = GetToken();
+                    }
                     if (!string.IsNullOrEmpty(token))
                     {
                         tcs.SetResult(token);
