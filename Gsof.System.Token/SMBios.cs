@@ -76,7 +76,7 @@ namespace Gsof.System.Token
             }
         }
 
-        public static string UUID()
+        public static string? UUID()
         {
             var smb = SMBios.GetSystemFirmwareTable(Provider.RSMB, 0);
 
@@ -89,10 +89,11 @@ namespace Gsof.System.Token
 
             var data = smb.Value.SMBIOSTableData;
             var len = smb.Value.Length;
+            var ver = smb.Value.SMBIOSMajorVersion * 0x100 + smb.Value.SMBIOSMinorVersion;
 
             var index = 0;
 
-            var uuid = new byte[16];
+            //var uuid = new byte[16];
 
             while (index < len)
             {
@@ -106,36 +107,10 @@ namespace Gsof.System.Token
 
                     var buffer = data.Take(index + 8, 16).ToArray();
 
-                    // check if there is a valid UUID (not all 0x00 or all 0xff)
-                    bool all_zero = true, all_one = true;
-                    for (int i = 0; i < 16 && (all_zero || all_one); i++)
+                    var uuid = DmiSystemUuid(buffer, ver);
+                    if (!string.IsNullOrEmpty(uuid))
                     {
-                        if (buffer[i] != 0x00)
-                        {
-                            all_zero = false;
-                        }
-                        if (buffer[i] != 0xFF)
-                        {
-                            all_one = false;
-                        }
-                    }
-
-                    if (!all_zero && !all_one)
-                    {
-                        /* As off version 2.6 of the SMBIOS specification, the first 3 fields
-                        of the UUID are supposed to be encoded on little-endian. (para 7.2.1) */
-                        uuid[0] = buffer[3];
-                        uuid[1] = buffer[2];
-                        uuid[2] = buffer[1];
-                        uuid[3] = buffer[0];
-                        uuid[4] = buffer[5];
-                        uuid[5] = buffer[4];
-                        uuid[6] = buffer[7];
-                        uuid[7] = buffer[6];
-                        for (int i = 8; i < 16; i++)
-                        {
-                            uuid[i] = buffer[i];
-                        }
+                        return uuid;
                     }
                     break;
                 }
@@ -151,7 +126,39 @@ namespace Gsof.System.Token
                 index = next;
             }
 
-            return uuid.ToHex().Insert(8, "-").Insert(13, "-").Insert(18, "-").Insert(23, "-").ToUpper();
+            return null; //uuid.ToHex().Insert(8, "-").Insert(13, "-").Insert(18, "-").Insert(23, "-").ToUpper();
+        }
+
+        static string? DmiSystemUuid(byte[] p, int ver)
+        {
+            bool only0xFF = true;
+            bool only0x00 = true;
+
+            for (int i = 0; i < 16 && (only0x00 || only0xFF); i++)
+            {
+                if (p[i] != 0x00) only0x00 = true;
+                if (p[i] != 0xFF) only0xFF = true;
+            }
+
+            if (only0xFF)
+            {
+                return null;
+            }
+
+            if (only0x00)
+            {
+                return null;
+            }
+
+
+            if (ver >= 0x0206)
+            {
+                return $"{p[3]}{p[2]}{p[1]}{p[0]}-{p[5]}{p[4]}-{p[7]}{p[6]}-{p[8]}{p[9]}-{p[10]}{p[11]}{p[12]}{p[13]}{p[14]}{p[15]}";
+            }
+            else
+            {
+                return $"{p[0]}{p[1]}{p[2]}{p[3]}-{p[4]}{p[5]}-{p[6]}{p[7]}-{p[8]}{p[9]}-{p[10]}{p[11]}{p[12]}{p[13]}{p[14]}{p[15]}";
+            }
         }
     }
 }
